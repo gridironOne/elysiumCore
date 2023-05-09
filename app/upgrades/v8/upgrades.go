@@ -8,8 +8,8 @@ import (
 	oracletypes "github.com/persistenceOne/persistence-sdk/v2/x/oracle/types"
 	lscosmostypes "github.com/persistenceOne/pstake-native/v2/x/lscosmos/types"
 
-	"github.com/persistenceOne/persistenceCore/v8/app/keepers"
-	"github.com/persistenceOne/persistenceCore/v8/app/upgrades"
+	"github.com/gridironOne/elysiumCore/v8/app/keepers"
+	"github.com/gridironOne/elysiumCore/v8/app/upgrades"
 )
 
 func setInitialMinCommissionRate(ctx sdk.Context, keepers *keepers.AppKeepers) {

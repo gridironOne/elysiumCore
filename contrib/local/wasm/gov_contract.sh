@@ -11,11 +11,11 @@ VAL1_KEY=$($CHAIN_BIN keys show -a val1)
 RESP=$($CHAIN_BIN tx gov submit-proposal wasm-store "$DIR/hackatom.wasm" \
   --title "hackatom" \
   --description "hackatom test contact" \
-  --deposit 10000uxprt \
+  --deposit 10000ufury \
   --run-as $VAL1_KEY \
   --instantiate-everybody "true" \
   --keyring-backend test \
-  --from $VAL1_KEY --gas auto --fees 10000uxprt -y \
+  --from $VAL1_KEY --gas auto --fees 10000ufury -y \
   --chain-id $CHAIN_ID \
   -b block -o json --gas-adjustment 1.5)
 echo "$RESP"
@@ -26,11 +26,11 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test2 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "### Query proposal postvote"
 $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
@@ -45,7 +45,7 @@ echo "-----------------------"
 echo "## Create new contract instance"
 INIT="{\"verifier\":\"$($CHAIN_BIN keys show val1 -a --keyring-backend test)\", \"beneficiary\":\"$($CHAIN_BIN keys show test1 -a)\"}"
 $CHAIN_BIN tx wasm instantiate "$CODE_ID" "$INIT" --admin="$($CHAIN_BIN keys show val1 -a --keyring-backend test)" \
-  --from val1 --amount "10000uxprt" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000uxprt" \
+  --from val1 --amount "10000ufury" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000ufury" \
   --gas "auto" -y --chain-id $CHAIN_ID -b block -o json | jq
 
 CONTRACT=$($CHAIN_BIN query wasm list-contract-by-code "$CODE_ID" -o json | jq -r '.contracts[-1]')
@@ -64,7 +64,7 @@ echo "-----------------------"
 echo "## Execute contract $CONTRACT"
 MSG='{"release":{}}'
 $CHAIN_BIN tx wasm execute "$CONTRACT" "$MSG" \
-  --from val1 --gas-adjustment 1.5 --fees "10000uxprt" \
+  --from val1 --gas-adjustment 1.5 --fees "10000ufury" \
   --gas "auto" -y --chain-id $CHAIN_ID -b block -o json | jq
 
 echo "-----------------------"
@@ -72,5 +72,5 @@ echo "## Set new admin"
 echo "### Query old admin: $($CHAIN_BIN q wasm contract "$CONTRACT" -o json | jq -r '.contract_info.admin')"
 echo "### Update contract"
 $CHAIN_BIN tx wasm set-contract-admin "$CONTRACT" "$($CHAIN_BIN keys show test1 -a)" \
-  --from val1 --gas-adjustment 1.5 --gas "auto" --fees "10000uxprt" -y --chain-id $CHAIN_ID -b block -o json | jq
+  --from val1 --gas-adjustment 1.5 --gas "auto" --fees "10000ufury" -y --chain-id $CHAIN_ID -b block -o json | jq
 echo "### Query new admin: $($CHAIN_BIN q wasm contract "$CONTRACT" -o json | jq -r '.contract_info.admin')"

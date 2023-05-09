@@ -1,10 +1,10 @@
 CHAIN_ID := testing
 
 GOBIN ?= $(HOME)/go/bin
-CHAIN_NAME ?= persistenceCore
+CHAIN_NAME ?= elysiumCore
 CHAIN_DIR ?= /tmp/trash
-CHAIN_BIN ?= ./../../build/persistenceCore
-CHAIN_DATA_DIR ?= .persistenceCore
+CHAIN_BIN ?= ./../../build/elysiumCore
+CHAIN_DATA_DIR ?= .elysiumCore
 WASM_PERMISSIONLESS ?= false
 ASSET ?= DUMMY
 
@@ -35,7 +35,7 @@ start:
 	DAEMON_NAME=$(CHAIN_NAME) \
 	HOME=$(CHAIN_DIR) \
 	DAEMON_HOME=$(CHAIN_DIR)/$(CHAIN_DATA_DIR) \
-	cosmovisor start --minimum-gas-prices="0.0005uxprt" $(ARGS)
+	cosmovisor start --minimum-gas-prices="0.0005ufury" $(ARGS)
 
 clean:
 	rm -rf $(CHAIN_DIR)/$(CHAIN_DATA_DIR)
@@ -67,11 +67,11 @@ run-oracle-feeder:
 	$(MAKE) .bash SCRIPT_FILE=oracle/feeder.sh
 
 run-oracle-update-params:
-	# update oracle asset params in persistenceCore chain to "DUMMY" asset
+	# update oracle asset params in elysiumCore chain to "DUMMY" asset
 	$(MAKE) .bash SCRIPT_FILE=oracle/update_params.sh
 
 run-oracle-contract:
-	# deploy oracle contract in persistenceCore chain
+	# deploy oracle contract in elysiumCore chain
 
 	$(MAKE) .bash SCRIPT_FILE=oracle/contract.sh
 
@@ -82,13 +82,13 @@ run-oracle-contract:
 # Docker variables
 DOCKER := $(shell which docker)
 
-DOCKER_IMAGE_NAME = persistenceone/persistencecore
+DOCKER_IMAGE_NAME = elysiumone/elysiumcore
 DOCKER_TAG_NAME = latest
-DOCKER_CONTAINER := persistence-core-container
+DOCKER_CONTAINER := elysium-core-container
 DOCKER_ENV ?= \
 	-e HOME=/opt \
 	-e CHAIN_DIR=/opt \
-	-e CHAIN_BIN=/usr/bin/persistenceCore \
+	-e CHAIN_BIN=/usr/bin/elysiumCore \
 	-e WASM_PERMISSIONLESS=$(WASM_PERMISSIONLESS)
 DOCKER_PORTS ?= \
 	-p 127.0.0.1:1317:1317 \

@@ -1,6 +1,6 @@
 #!/bin/bash
 make all
 
-rm -rf ~/.persistenceCore
+rm -rf ~/.elysiumCore
 
-mkdir ~/.persistenceCore
+mkdir ~/.elysiumCore

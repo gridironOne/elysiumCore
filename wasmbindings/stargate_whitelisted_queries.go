@@ -14,7 +14,7 @@ var stargateWhitelistQueries sync.Map
 
 func init() {
 	// stargate queries available for the contract
-	setStargateWhitelistQuery("/persistence.oracle.v1beta1.Query/ExchangeRate", &types.QueryExchangeRateResponse{})
+	setStargateWhitelistQuery("/elysium.oracle.v1beta1.Query/ExchangeRate", &types.QueryExchangeRateResponse{})
 }
 
 // setStargateWhitelistQuery stores the stargate queries.

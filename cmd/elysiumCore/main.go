@@ -1,5 +1,5 @@
 /*
- Copyright [2019] - [2021], PERSISTENCE TECHNOLOGIES PTE. LTD. and the persistenceCore contributors
+ Copyright [2019] - [2021], ELYSIUM TECHNOLOGIES PTE. LTD. and the elysiumCore contributors
  SPDX-License-Identifier: Apache-2.0
 */
 
@@ -11,8 +11,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	servercmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"github.com/persistenceOne/persistenceCore/v8/app"
-	"github.com/persistenceOne/persistenceCore/v8/cmd/persistenceCore/cmd"
+	"github.com/gridironOne/elysiumCore/v8/app"
+	"github.com/gridironOne/elysiumCore/v8/cmd/elysiumCore/cmd"
 )
 
 func main() {

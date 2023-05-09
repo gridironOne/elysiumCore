@@ -7,7 +7,7 @@ FILE = $(UPGRADE_NAME)/config.yaml
 
 HELM_REPO = starship
 HELM_CHART = devnet
-HELM_NAME = persistence
+HELM_NAME = elysium
 HELM_VERSION = 0.1.15
 # k8s namespace
 NAMESPACE = dev-core

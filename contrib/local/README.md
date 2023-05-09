@@ -6,8 +6,8 @@ Scripts for running local net locally (tested for mac and linux).
 
 For any of the types bellow, need to build the local clients
 
-* From root dir `persistenceCore/`
-* Run `make build`: This will create the binary at `./build/persistenceCore`
+* From root dir `elysiumCore/`
+* Run `make build`: This will create the binary at `./build/elysiumCore`
 
 ## In system
 

@@ -55,8 +55,8 @@ comma := ,
 build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
 # process linker flags
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=persistenceCore \
-		  -X github.com/cosmos/cosmos-sdk/version.AppName=persistenceCore \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=elysiumCore \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=elysiumCore \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 		  -X github.com/tendermint/tendermint/version.TMCoreSemVer=$(TM_VERSION) \
@@ -120,7 +120,7 @@ go.sum: go.mod
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go get github.com/RobotsAndPencils/goviz
-	@goviz -i ./cmd/persistenceCore -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i ./cmd/elysiumCore -d 2 | dot -Tpng -o dependency-graph.png
 
 clean:
 	rm -rf $(BUILDDIR)/ artifacts/ release/
@@ -134,12 +134,12 @@ distclean: clean
 
 # Commands for running docker
 #
-# Run persistenceCore on docker
+# Run elysiumCore on docker
 # Example Usage:
-# 	make docker-build   ## Builds persistenceCore binary in 2 stages, 1st builder 2nd Runner
-# 						   Final image only has the compiled persistenceCore binary
+# 	make docker-build   ## Builds elysiumCore binary in 2 stages, 1st builder 2nd Runner
+# 						   Final image only has the compiled elysiumCore binary
 # 	make docker-interactive   ## Will start an shell session into the docker container
-# 								 Access to persistenceCore binary here
+# 								 Access to elysiumCore binary here
 # 		NOTE: To be used for testing only, since the container will be removed after stopping
 # 	make docker-run DOCKER_CMD=sleep 10000000 DOCKER_OPTS=-d   ## Will run the container in the background
 # 		NOTE: Recommeded to use docker commands directly for long running processes
@@ -158,13 +158,13 @@ PLATFORM ?= amd64
 release-build-platform:
 	@mkdir -p release/
 	-@$(DOCKER) rm -f release-$(PLATFORM)
-	$(MAKE) docker-build PROCESS="persistencecore" DOCKER_FILE="Dockerfile.release" \
+	$(MAKE) docker-build PROCESS="elysiumcore" DOCKER_FILE="Dockerfile.release" \
 		DOCKER_BUILD_ARGS="--platform linux/$(PLATFORM) --no-cache --load" \
 		DOCKER_TAG_NAME="release-$(PLATFORM)"
 	$(DOCKER) images
 	$(DOCKER) create -ti --name release-$(PLATFORM) $(DOCKER_IMAGE_NAME):release-$(PLATFORM)
-	$(DOCKER) cp release-$(PLATFORM):/usr/local/app/build/persistenceCore release/persistenceCore-$(VERSION)-linux-$(PLATFORM)
-	tar -zcvf release/persistenceCore-$(VERSION)-linux-$(PLATFORM).tar.gz release/persistenceCore-$(VERSION)-linux-$(PLATFORM)
+	$(DOCKER) cp release-$(PLATFORM):/usr/local/app/build/elysiumCore release/elysiumCore-$(VERSION)-linux-$(PLATFORM)
+	tar -zcvf release/elysiumCore-$(VERSION)-linux-$(PLATFORM).tar.gz release/elysiumCore-$(VERSION)-linux-$(PLATFORM)
 	-@$(DOCKER) rm -f release-$(PLATFORM)
 
 release-sha:
@@ -177,12 +177,12 @@ release-git:
 	mkdir -p release/
 	git archive \
 		--format zip \
-		--prefix "persistenceCore-$(VERSION)/" \
+		--prefix "elysiumCore-$(VERSION)/" \
 		-o "release/Source code.zip" \
 		HEAD
 
 	git archive \
 		--format tar.gz \
-		--prefix "persistenceCore-$(VERSION)/" \
+		--prefix "elysiumCore-$(VERSION)/" \
 		-o "release/Source code.tar.gz" \
 		HEAD

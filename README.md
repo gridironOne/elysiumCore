@@ -1,15 +1,15 @@
-# persistenceCore
+# elysiumCore
 
-[![LoC](https://tokei.rs/b1/github/persistenceOne/persistenceCore)](https://github.com/persistenceOne/persistenceCore)
+[![LoC](https://tokei.rs/b1/github/gridironOne/elysiumCore)](https://github.com/gridironOne/elysiumCore)
 
-This project implements an application for the Persistence Core chain that all the other chains in the ecosystem connect
+This project implements an application for the Elysium Core chain that all the other chains in the ecosystem connect
 to as a raised and open moderator for interoperability, shared security, and as a gateway to other ecosystems and
 chains.
 
 ## Talk to us!
 
-* [Twitter](https://twitter.com/PersistenceOne)
-* [Telegram](https://t.me/PersistenceOneChat)
+* [Twitter](https://twitter.com/ElysiumOne)
+* [Telegram](https://t.me/ElysiumOneChat)
 * [Discord](https://discord.com/channels/796174129077813248)
 
 ## Hardware Requirements
@@ -43,7 +43,7 @@ chains.
 * Clone git repository
 
 ```shell
-git clone https://github.com/persistenceOne/persistenceCore.git
+git clone https://github.com/gridironOne/elysiumCore.git
 ```
 
 * Checkout release tag
@@ -56,88 +56,88 @@ git checkout [vX.X.X]
 * Install
 
 ```shell
-cd persistenceCore
+cd elysiumCore
 make all
 ```
 
 ### Generate keys
 
-`persistenceCore keys add [key_name]`
+`elysiumCore keys add [key_name]`
 
 or
 
-`persistenceCore keys add [key_name] --recover` to regenerate keys with
+`elysiumCore keys add [key_name] --recover` to regenerate keys with
 your [BIP39](https://github.com/bitcoin/bips/tree/master/bip-0039) mnemonic
 
 ### Connect to a chain and start node
 
-* [Install](#installation-steps) persistenceCore application
+* [Install](#installation-steps) elysiumCore application
 * Initialize node
 
 ```shell
-persistenceCore init [NODE_NAME]
+elysiumCore init [NODE_NAME]
 ```
 
-* Replace `${HOME}/.persistenceCore/config/genesis.json` with the genesis file of the chain.
-* Add `persistent_peers` or `seeds` in `${HOME}/.persistenceCore/config/config.toml`
+* Replace `${HOME}/.elysiumCore/config/genesis.json` with the genesis file of the chain.
+* Add `persistent_peers` or `seeds` in `${HOME}/.elysiumCore/config/config.toml`
 * Start node
 
 ```shell
-persistenceCore start
+elysiumCore start
 ```
 
 ### Initialize a new chain and start node
 
-* Initialize: `persistenceCore init [node_name] --chain-id [chain_name]`
-* Add key for genesis account `persistenceCore keys add [genesis_key_name]`
-* Add genesis account `persistenceCore add-genesis-account [genesis_key_name] 10000000000000000000stake`
-* Create a validator at genesis `persistenceCore gentx [genesis_key_name] 10000000stake --chain-id [chain_name]`
-* Collect genesis transactions `persistenceCore collect-gentxs`
-* Start node `persistenceCore start`
+* Initialize: `elysiumCore init [node_name] --chain-id [chain_name]`
+* Add key for genesis account `elysiumCore keys add [genesis_key_name]`
+* Add genesis account `elysiumCore add-genesis-account [genesis_key_name] 10000000000000000000stake`
+* Create a validator at genesis `elysiumCore gentx [genesis_key_name] 10000000stake --chain-id [chain_name]`
+* Collect genesis transactions `elysiumCore collect-gentxs`
+* Start node `elysiumCore start`
 * To start rest server set `enable=true` in `config/app.toml` under `[api]` and restart the chain
 
 ### Ledger Support
 
-> NOTE: *If you are using Cosmos Ledger app*: Persistence uses coin-type 750; generating keys through this method below
+> NOTE: *If you are using Cosmos Ledger app*: Elysium uses coin-type 750; generating keys through this method below
 > will create keys with coin-type 118(cosmos) and will only be supported by CLI and not by current or future wallets.
 
-* Install the Persistence application on the Ledger
-  device. [ref](https://github.com/persistenceOne/persistenceCore/blob/main/docs/resources/Ledger.md#install-the-persistence-ledger-application)
-* Connect the Ledger device to a system with persistenceCore binary and open the Persistence application on it.
+* Install the Elysium application on the Ledger
+  device. [ref](https://github.com/gridironOne/elysiumCore/blob/main/docs/resources/Ledger.md#install-the-elysium-ledger-application)
+* Connect the Ledger device to a system with elysiumCore binary and open the Elysium application on it.
 * Add key
 
 ```shell
-persistenceCore keys add [key_name] --ledger
+elysiumCore keys add [key_name] --ledger
 ```
 
 * Sign transaction
 
 ```shell
-persistenceCore tx [transaction parameters] --ledger
+elysiumCore tx [transaction parameters] --ledger
 ```
 
 ### Reset chain
 
 ```shell
-rm -rf ~/.persistenceCore
+rm -rf ~/.elysiumCore
 ```
 
 ### Shutdown node
 
 ```shell
-killall persistenceCore
+killall elysiumCore
 ```
 
 ### Check version
 
 ```shell
-persistenceCore version
+elysiumCore version
 ```
 
 ## Test-nets
 
-* [test-core-1](https://github.com/persistenceOne/genesisTransactions/tree/master/test-core-1)
+* [test-core-1](https://github.com/gridironOne/genesisTransactions/tree/master/test-core-1)
 
 ## Main-net
 
-* [core-1](https://github.com/persistenceOne/genesisTransactions/tree/master/core-1)
+* [core-1](https://github.com/gridironOne/genesisTransactions/tree/master/core-1)

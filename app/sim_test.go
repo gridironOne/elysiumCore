@@ -1,5 +1,5 @@
 /*
- Copyright [2019] - [2021], PERSISTENCE TECHNOLOGIES PTE. LTD. and the persistenceCore contributors
+ Copyright [2019] - [2021], ELYSIUM TECHNOLOGIES PTE. LTD. and the elysiumCore contributors
  SPDX-License-Identifier: Apache-2.0
 */
 
@@ -21,12 +21,12 @@ import (
 	"github.com/tendermint/tendermint/libs/rand"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/persistenceOne/persistenceCore/v8/app"
+	"github.com/gridironOne/elysiumCore/v8/app"
 )
 
 // SimAppChainID hardcoded chainID for simulation
 const (
-	SimAppChainID = "persistence-app"
+	SimAppChainID = "elysium-app"
 )
 
 func init() {
@@ -50,7 +50,7 @@ func BenchmarkFullAppSimulation(b *testing.B) {
 		}
 	}()
 	encConf := app.MakeEncodingConfig()
-	persistenceApp := app.NewApplication(
+	elysiumApp := app.NewApplication(
 		app.Name,
 		encConf,
 		app.ModuleAccountPermissions,
@@ -71,17 +71,17 @@ func BenchmarkFullAppSimulation(b *testing.B) {
 	_, simParams, simErr := simulation.SimulateFromSeed(
 		b,
 		os.Stdout,
-		persistenceApp.BaseApp,
-		simapp.AppStateFn(persistenceApp.ApplicationCodec(), persistenceApp.SimulationManager()),
+		elysiumApp.BaseApp,
+		simapp.AppStateFn(elysiumApp.ApplicationCodec(), elysiumApp.SimulationManager()),
 		simulation2.RandomAccounts, // Replace with own random account function if using keys other than secp256k1
-		simapp.SimulationOperations(persistenceApp, persistenceApp.ApplicationCodec(), config),
-		persistenceApp.ModuleAccountAddrs(),
+		simapp.SimulationOperations(elysiumApp, elysiumApp.ApplicationCodec(), config),
+		elysiumApp.ModuleAccountAddrs(),
 		config,
-		persistenceApp.ApplicationCodec(),
+		elysiumApp.ApplicationCodec(),
 	)
 
 	// export state and simParams before the simulation error is checked
-	if err = simapp.CheckExportSimulation(persistenceApp, config, simParams); err != nil {
+	if err = simapp.CheckExportSimulation(elysiumApp, config, simParams); err != nil {
 		b.Fatal(err)
 	}
 
@@ -129,7 +129,7 @@ func TestAppStateDeterminism(t *testing.T) {
 
 			db := dbm.NewMemDB()
 			encConf := app.MakeEncodingConfig()
-			persistenceApp := app.NewApplication(
+			elysiumApp := app.NewApplication(
 				app.Name,
 				encConf,
 				app.ModuleAccountPermissions,
@@ -154,13 +154,13 @@ func TestAppStateDeterminism(t *testing.T) {
 			_, _, err := simulation.SimulateFromSeed(
 				t,
 				os.Stdout,
-				persistenceApp.BaseApp,
-				simapp.AppStateFn(persistenceApp.ApplicationCodec(), persistenceApp.SimulationManager()),
+				elysiumApp.BaseApp,
+				simapp.AppStateFn(elysiumApp.ApplicationCodec(), elysiumApp.SimulationManager()),
 				simulation2.RandomAccounts, // Replace with own random account function if using keys other than secp256k1
-				simapp.SimulationOperations(persistenceApp, persistenceApp.ApplicationCodec(), config),
-				persistenceApp.ModuleAccountAddrs(),
+				simapp.SimulationOperations(elysiumApp, elysiumApp.ApplicationCodec(), config),
+				elysiumApp.ModuleAccountAddrs(),
 				config,
-				persistenceApp.ApplicationCodec(),
+				elysiumApp.ApplicationCodec(),
 			)
 			require.NoError(t, err)
 
@@ -168,7 +168,7 @@ func TestAppStateDeterminism(t *testing.T) {
 				simapp.PrintStats(db)
 			}
 
-			appHash := persistenceApp.BaseApp.LastCommitID().Hash
+			appHash := elysiumApp.BaseApp.LastCommitID().Hash
 			appHashList[j] = appHash
 
 			if j != 0 {

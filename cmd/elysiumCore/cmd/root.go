@@ -32,8 +32,8 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/persistenceOne/persistenceCore/v8/app"
-	"github.com/persistenceOne/persistenceCore/v8/app/params"
+	"github.com/gridironOne/elysiumCore/v8/app"
+	"github.com/gridironOne/elysiumCore/v8/app/params"
 )
 
 const flagInvalidCheckPeriod = "invalid-check-period"
@@ -56,8 +56,8 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	cobra.EnableCommandSorting = false
 
 	rootCmd := &cobra.Command{
-		Use:   "persistenceCore",
-		Short: "Persistence Hub Node Daemon (server)",
+		Use:   "elysiumCore",
+		Short: "Elysium Hub Node Daemon (server)",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			initClientCtx, err := client.ReadPersistentCommandFlags(initClientCtx, cmd.Flags())
 			if err != nil {
@@ -100,7 +100,7 @@ func setConfig() {
 
 func initAppConfig() (string, interface{}) {
 	srvCfg := serverconfig.DefaultConfig()
-	srvCfg.MinGasPrices = "0uxprt"
+	srvCfg.MinGasPrices = "0ufury"
 	return params.CustomConfigTemplate, params.CustomAppConfig{
 		Config: *srvCfg,
 	}
@@ -261,7 +261,7 @@ func (ac appCreator) appExport(
 		loadLatest = true
 	}
 	var emptyWasmOpts []wasm.Option
-	persistenceApp := app.NewApplication(
+	elysiumApp := app.NewApplication(
 		app.Name,
 		ac.encCfg,
 		app.ModuleAccountPermissions,
@@ -278,10 +278,10 @@ func (ac appCreator) appExport(
 	)
 
 	if height != -1 {
-		if err := persistenceApp.LoadHeight(height); err != nil {
+		if err := elysiumApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	}
 
-	return persistenceApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
+	return elysiumApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
 }

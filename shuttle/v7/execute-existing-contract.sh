@@ -1,9 +1,9 @@
 #!/bin/bash
 set -o errexit -o nounset -o pipefail -eu
 
-CHAIN_BIN="persistenceCore"
+CHAIN_BIN="elysiumCore"
 CHAIN_ID="test-core-1"
-SHOW_KEY="persistenceCore keys show --keyring-backend test -a"
+SHOW_KEY="elysiumCore keys show --keyring-backend test -a"
 
 CODE_ID=$($CHAIN_BIN q wasm list-code --chain-id $CHAIN_ID -o json | jq -r '.code_infos[-1].code_id')
 
@@ -32,14 +32,14 @@ echo "=> Execute wasm contract: $CONTRACT_ADDR"
 MSG='{"release":{}}'
 $CHAIN_BIN tx wasm execute "$CONTRACT_ADDR" "$MSG" \
   --from val1 --keyring-backend test --gas-adjustment 1.5 \
-  --fees "10000uxprt" --gas "auto" -y --chain-id $CHAIN_ID \
+  --fees "10000ufury" --gas "auto" -y --chain-id $CHAIN_ID \
   -b block -o json | jq -r '{height, txhash, code, raw_log}'
 
 echo "--------------------------------------------"
 echo "=> Create one more instance"
 INIT="{\"verifier\":\"$($SHOW_KEY val1)\", \"beneficiary\":\"$($SHOW_KEY test1)\"}"
 $CHAIN_BIN tx wasm instantiate "$CODE_ID" "$INIT" --admin="$($SHOW_KEY val1)" \
-  --from val1 --amount "10000uxprt" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000uxprt" \
+  --from val1 --amount "10000ufury" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000ufury" \
   --gas "auto" -y --chain-id $CHAIN_ID -b block \
   -o json | jq -r '{height, txhash, code, raw_log}'
 
@@ -51,7 +51,7 @@ echo "=> Execute wasm contract: $CONTRACT_ADDR"
 MSG='{"release":{}}'
 $CHAIN_BIN tx wasm execute "$CONTRACT_ADDR" "$MSG" \
   --from val1 --keyring-backend test --gas-adjustment 1.5 \
-  --fees "10000uxprt" --gas "auto" -y --chain-id $CHAIN_ID \
+  --fees "10000ufury" --gas "auto" -y --chain-id $CHAIN_ID \
   -b block -o json | jq -r '{height, txhash, code, raw_log}'
 
 echo "-------------------DONE---------------------"

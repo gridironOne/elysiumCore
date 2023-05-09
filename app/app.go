@@ -1,5 +1,5 @@
 /*
- Copyright [2019] - [2021], PERSISTENCE TECHNOLOGIES PTE. LTD. and the persistenceCore contributors
+ Copyright [2019] - [2021], ELYSIUM TECHNOLOGIES PTE. LTD. and the elysiumCore contributors
  SPDX-License-Identifier: Apache-2.0
 */
 
@@ -51,10 +51,10 @@ import (
 	tendermintproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tendermintdb "github.com/tendermint/tm-db"
 
-	"github.com/persistenceOne/persistenceCore/v8/app/keepers"
-	appparams "github.com/persistenceOne/persistenceCore/v8/app/params"
-	"github.com/persistenceOne/persistenceCore/v8/app/upgrades"
-	v8 "github.com/persistenceOne/persistenceCore/v8/app/upgrades/v8"
+	"github.com/gridironOne/elysiumCore/v8/app/keepers"
+	appparams "github.com/gridironOne/elysiumCore/v8/app/params"
+	"github.com/gridironOne/elysiumCore/v8/app/upgrades"
+	v8 "github.com/gridironOne/elysiumCore/v8/app/upgrades/v8"
 )
 
 var (
@@ -107,7 +107,7 @@ func init() {
 		stdlog.Println("Failed to get home dir %2", err)
 	}
 
-	DefaultNodeHome = filepath.Join(userHomeDir, ".persistenceCore")
+	DefaultNodeHome = filepath.Join(userHomeDir, ".elysiumCore")
 }
 
 type Application struct {

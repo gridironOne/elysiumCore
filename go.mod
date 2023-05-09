@@ -1,4 +1,4 @@
-module github.com/persistenceOne/persistenceCore/v8
+module github.com/merlin-network/elysiumCore/v8
 
 go 1.19
 
@@ -9,8 +9,8 @@ require (
 	github.com/cosmos/ibc-go/v6 v6.1.0
 	github.com/gogo/protobuf v1.3.3
 	github.com/gorilla/mux v1.8.0
-	github.com/persistenceOne/persistence-sdk/v2 v2.1.0-rc2
-	github.com/persistenceOne/pstake-native/v2 v2.1.0-rc0
+	github.com/persistenceOne/persistence-sdk/v2 v2.2.2-elysium-rc1
+	github.com/persistenceOne/pstake-native/v2 v2.1.1-pstake-rc0
 	github.com/prometheus/client_golang v1.14.0
 	github.com/rakyll/statik v0.1.7
 	github.com/spf13/cast v1.5.0
@@ -122,6 +122,7 @@ require (
 	github.com/mtibben/percent v0.2.1 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
+	github.com/persistenceOne/persistence-sdk/v2 v2.1.0-rc0 // indirect
 	github.com/petermattis/goid v0.0.0-20180202154549-b0b1615b78e5 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

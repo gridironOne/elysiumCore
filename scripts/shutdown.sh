@@ -1,3 +1,3 @@
-killall persistenceCore
+killall elysiumCore
 echo "
 Node Shutdown."

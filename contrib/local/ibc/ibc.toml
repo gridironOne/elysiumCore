@@ -117,16 +117,16 @@ address_type = { derivation = 'cosmos' }
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://persistence:26657'
-grpc_addr = 'http://persistence:9090'
-websocket_addr = 'ws://persistence:26657/websocket'
+rpc_addr = 'http://elysium:26657'
+grpc_addr = 'http://elysium:9090'
+websocket_addr = 'ws://elysium:26657/websocket'
 rpc_timeout = '10s'
-account_prefix = 'persistence'
+account_prefix = 'elysium'
 key_name = 'rly-core1'
 store_prefix = 'ibc'
 default_gas = 100000
 max_gas = 400000
-gas_price = { price = 0.001, denom = 'uxprt' }
+gas_price = { price = 0.001, denom = 'ufury' }
 gas_multiplier = 1.0
 max_msg_num = 30
 max_tx_size = 2097152

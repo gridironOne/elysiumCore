@@ -1,9 +1,9 @@
 #!/bin/bash
 set -o errexit -o nounset -o pipefail -eu
 
-CHAIN_BIN="persistenceCore"
+CHAIN_BIN="elysiumCore"
 CHAIN_ID="test-core-1"
-SHOW_KEY="persistenceCore keys show --keyring-backend test -a"
+SHOW_KEY="elysiumCore keys show --keyring-backend test -a"
 
 DIRNAME="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 CONTRACT_DIR="$DIRNAME/test-contracts"
@@ -33,7 +33,7 @@ fi
 echo "--------------------------------------------"
 echo "=> Uploading contract1"
 RESP=$($CHAIN_BIN tx wasm store "$CONTRACT_FILE1" --keyring-backend test \
-  --from val1 --gas auto --fees 60000uxprt -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
+  --from val1 --gas auto --fees 60000ufury -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
 echo "$RESP" | jq  -r '{height, txhash, code, raw_log}'
 
 CODE_ID1=$(echo "$RESP" | jq -r '.logs[0].events[] | select(.type == "store_code") | .attributes[] | select(.key == "code_id") | .value')
@@ -48,7 +48,7 @@ echo "--------------------------------------------"
 echo "=> Instantiate wasm contract1"
 INIT="{\"verifier\":\"$($SHOW_KEY val1)\", \"beneficiary\":\"$($SHOW_KEY test1)\"}"
 $CHAIN_BIN tx wasm instantiate "$CODE_ID1" "$INIT" --admin="$($SHOW_KEY val1)" \
-  --from val1 --amount "10000uxprt" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000uxprt" \
+  --from val1 --amount "10000ufury" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000ufury" \
   --gas "auto" -y --chain-id $CHAIN_ID -b block \
   -o json | jq -r '{height, txhash, code, raw_log}'
 
@@ -73,7 +73,7 @@ echo "=> Execute wasm contract: $CONTRACT_ADDR"
 MSG='{"release":{}}'
 $CHAIN_BIN tx wasm execute "$CONTRACT_ADDR" "$MSG" \
   --from val1 --keyring-backend test --gas-adjustment 1.5 \
-  --fees "10000uxprt" --gas "auto" -y --chain-id $CHAIN_ID \
+  --fees "10000ufury" --gas "auto" -y --chain-id $CHAIN_ID \
   -b block -o json | jq -r '{height, txhash, code, raw_log}'
 
 echo "--------------------------------------------"
@@ -81,7 +81,7 @@ echo "=> Set new admin"
 echo "-> admin before set: $($CHAIN_BIN q wasm contract "$CONTRACT_ADDR" -o json | jq -r '.contract_info.admin')"
 echo "-> Run tx wasm set-contract-admin"
 $CHAIN_BIN tx wasm set-contract-admin "$CONTRACT_ADDR" "$($SHOW_KEY test1)" \
-  --from val1 --gas-adjustment 1.5 --gas "auto" --fees "10000uxprt" -y --chain-id $CHAIN_ID \
+  --from val1 --gas-adjustment 1.5 --gas "auto" --fees "10000ufury" -y --chain-id $CHAIN_ID \
   -b block -o json | jq -r '{height, txhash, code, raw_log}'
 echo "-> admin after set: $($CHAIN_BIN q wasm contract "$CONTRACT_ADDR" -o json | jq -r '.contract_info.admin')"
 
@@ -89,14 +89,14 @@ echo "--------------------------------------------"
 echo "=> Migrate wasm contract"
 echo "-> Uploading contract2"
 RESP=$($CHAIN_BIN tx wasm store "$CONTRACT_FILE2" --keyring-backend test \
-  --from val1 --gas auto --fees 60000uxprt -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
+  --from val1 --gas auto --fees 60000ufury -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
 echo $RESP | jq -r '{height, txhash, code, raw_log}'
 CODE_ID2=$(echo "$RESP" | jq -r '.logs[0].events[] | select(.type == "store_code") | .attributes[] | select(.key == "code_id") | .value')
 
 echo "-> Migrating to code id: $CODE_ID2"
 DEST_ACCOUNT=$($SHOW_KEY test1)
 $CHAIN_BIN tx wasm migrate "$CONTRACT_ADDR" "$CODE_ID2" "{\"payout\": \"$DEST_ACCOUNT\"}" --from test1 \
-  --keyring-backend test --chain-id $CHAIN_ID --gas "auto" --gas-adjustment 1.5 --fees "10000uxprt" -b block \
+  --keyring-backend test --chain-id $CHAIN_ID --gas "auto" --gas-adjustment 1.5 --fees "10000ufury" -b block \
   -y -o json | jq -r '{height, txhash, code, raw_log}'
 
 echo "-> Query destination account balance"
@@ -112,14 +112,14 @@ echo "-> admin before clear: $($CHAIN_BIN q wasm contract "$CONTRACT_ADDR" -o js
 echo "-> Run tx wasm clear-contract-admin"
 $CHAIN_BIN tx wasm clear-contract-admin "$CONTRACT_ADDR" \
   --from test1 -y --chain-id $CHAIN_ID -b block -o json --keyring-backend test \
-  --gas "auto" --gas-adjustment 1.5 --fees "10000uxprt" | jq -r '{height, txhash, code, raw_log}'
+  --gas "auto" --gas-adjustment 1.5 --fees "10000ufury" | jq -r '{height, txhash, code, raw_log}'
 echo "-> admin after clear: $($CHAIN_BIN q wasm contract "$CONTRACT_ADDR" -o json | jq -r '.contract_info.admin')"
 
 if [[ "$UPLOAD_AGAIN" == "true" ]]; then
     echo "--------------------------------------------"
     echo "=> Uploading contract1 again (to be executed again in post-upgrade script)"
     RESP=$($CHAIN_BIN tx wasm store "$CONTRACT_FILE1" --keyring-backend test \
-    --from val1 --gas auto --fees 60000uxprt -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
+    --from val1 --gas auto --fees 60000ufury -y --chain-id $CHAIN_ID -b block -o json --gas-adjustment 1.5)
     echo "$RESP" | jq  -r '{height, txhash, code, raw_log}'
 
     CODE_ID3=$(echo "$RESP" | jq -r '.logs[0].events[] | select(.type == "store_code") | .attributes[] | select(.key == "code_id") | .value')
@@ -129,7 +129,7 @@ if [[ "$UPLOAD_AGAIN" == "true" ]]; then
     echo "=> Instantiate wasm contract1"
     INIT="{\"verifier\":\"$($SHOW_KEY val1)\", \"beneficiary\":\"$($SHOW_KEY test1)\"}"
     $CHAIN_BIN tx wasm instantiate "$CODE_ID3" "$INIT" --admin="$($SHOW_KEY val1)" \
-    --from val1 --amount "10000uxprt" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000uxprt" \
+    --from val1 --amount "10000ufury" --label "local0.1.0" --gas-adjustment 1.5 --fees "10000ufury" \
     --gas "auto" -y --chain-id $CHAIN_ID -b block \
     -o json | jq -r '{height, txhash, code, raw_log}'
 
@@ -141,7 +141,7 @@ if [[ "$UPLOAD_AGAIN" == "true" ]]; then
     MSG='{"release":{}}'
     $CHAIN_BIN tx wasm execute "$CONTRACT_ADDR" "$MSG" \
     --from val1 --keyring-backend test --gas-adjustment 1.5 \
-    --fees "10000uxprt" --gas "auto" -y --chain-id $CHAIN_ID \
+    --fees "10000ufury" --gas "auto" -y --chain-id $CHAIN_ID \
     -b block -o json | jq -r '{height, txhash, code, raw_log}'
 fi
 

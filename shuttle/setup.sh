@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAIN_BIN="${CHAIN_BIN:=persistenceCore}"
-CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.persistenceCore}"
+CHAIN_BIN="${CHAIN_BIN:=elysiumCore}"
+CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.elysiumCore}"
 CHAIN_ID="${CHAIN_ID:=test-core-1}"
 NODE_HOST="${NODE_HOST:=localhost}"
 NODE_PORT="${NODE_PORT:=26657}"

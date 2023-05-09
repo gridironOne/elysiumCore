@@ -1,5 +1,5 @@
-PROCESS = persistencecore
-DOCKER_IMAGE_NAME = persistenceone/$(PROCESS)
+PROCESS = elysiumcore
+DOCKER_IMAGE_NAME = elysiumone/$(PROCESS)
 DOCKER_TAG_NAME = v6.0.0
 CONTAINER_NAME = container-$(PROCESS)
 DOCKER_FILE = Dockerfile
@@ -7,7 +7,7 @@ DOCKER_FILE = Dockerfile
 DOCKER := $(shell which docker)
 
 _DOCKER_ENV=\
-	-e CHAIN_ID=persistencecore \
+	-e CHAIN_ID=elysiumcore \
 	-e COINS="100000000000000000stake" \
 	$(DOCKER_ENV)
 _DOCKER_VOLUME=\

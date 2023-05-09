@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DENOM="${DENOM:=uxprt}"
-CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.persistenceCore}"
+DENOM="${DENOM:=ufury}"
+CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.elysiumCore}"
 
 VALIDATOR_CONFIG="configs/validators.json"
 KEYS_CONFIG="configs/keys.json"

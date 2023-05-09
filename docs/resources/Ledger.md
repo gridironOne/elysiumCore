@@ -3,10 +3,10 @@
 Using a hardware wallet to store your private keys comes in handy and improves the security of your crypto assets.
 The **Ledger** device acts as an enclave of the seed phrase (mnemonic) and private keys and thereby the process of
 signing transaction takes place within it. Your private information is secure and will not leak from the Ledger device.
-Here is a short tutorial on using the **Persistence Ledger** app with the **PersistenceCore CLI**.
+Here is a short tutorial on using the **Elysium Ledger** app with the **ElysiumCore CLI**.
 
 At the core of a **Ledger** device there is a mnemonic (seed phrase) that is used to generate private keys. The seed
-phrase is generated when you initialize your **Ledger**. The mnemonic is compatible with **Persistence** and can be used
+phrase is generated when you initialize your **Ledger**. The mnemonic is compatible with **Elysium** and can be used
 to seed new accounts.
 
 ::: **Danger**
@@ -15,10 +15,10 @@ keep multiple copies of your mnemonic stored in safe and secure locations. Pleas
 to your mnemonic, they can fully control your associated accounts.
 :::
 
-## Install the Persistence Ledger application
+## Install the Elysium Ledger application
 
-Installing the **Persistence** application on your ledger device is required before you
-use [`persistenceCore`](#persistencecore-cli-+-ledger-nano). To do so, you need to:
+Installing the **Elysium** application on your ledger device is required before you
+use [`elysiumCore`](#elysiumcore-cli-+-ledger-nano). To do so, you need to:
 
 1. Install [Ledger Live](https://shop.ledger.com/pages/ledger-live) on your machine.
 2. Using Ledger
@@ -26,27 +26,27 @@ use [`persistenceCore`](#persistencecore-cli-+-ledger-nano). To do so, you need 
    . On the Ledger Live application, navigate to the **Menu** and then the **Manager** menu item.
    ![manager](../images/ledger-tuto-manager.png)
 4. Connect your **Ledger Nano** device and select the **Allow Ledger Manager on your device** check box.
-5. On the **Ledger Live** application, search for **Persistence**.
-6. Install the **Persistence** application by clicking **Install**.
+5. On the **Ledger Live** application, search for **Elysium**.
+6. Install the **Elysium** application by clicking **Install**.
    ![install](../images/ledger-tuto-install.png)
 
-## Persistence Wallet + Ledger Nano
+## Elysium Wallet + Ledger Nano
 
-You can sign into your **Persistence Wallet** and do all transactions using the **Ledger Nano** device without having
+You can sign into your **Elysium Wallet** and do all transactions using the **Ledger Nano** device without having
 the need to use your private key or mnemonic.
 
-**Prerequisites**: [Install the Persistence app](#install-the-persistence-ledger-application) on your Ledger Nano before
+**Prerequisites**: [Install the Elysium app](#install-the-elysium-ledger-application) on your Ledger Nano before
 doing the following task.
 
-1. After connecting your Ledger device to the computer, unlock it with the **PIN** and open the **Persistence Wallet**
+1. After connecting your Ledger device to the computer, unlock it with the **PIN** and open the **Elysium Wallet**
    app on your Ledger device.
-2. Open the [Persistence Wallet](https://wallet.persistence.one/) in your web browser.
+2. Open the [Elysium Wallet](https://wallet.elysium.one/) in your web browser.
 3. Select **Sign in** on the web wallet.
    ![wallet-signin](../images/ledger-tuto-wallet-signin.png)
-4. You can now start using **Persistence Wallet** with your Ledger Nano.
+4. You can now start using **Elysium Wallet** with your Ledger Nano.
 
-**Note**: When you transact on Persistence Wallet (**Send** or **Stake**), you need to confirm the transaction on your
-Ledger device. An indication is displayed on your Persistence Wallet app to approve or reject the transaction.
+**Note**: When you transact on Elysium Wallet (**Send** or **Stake**), you need to confirm the transaction on your
+Ledger device. An indication is displayed on your Elysium Wallet app to approve or reject the transaction.
 
 ### Confirm address on ledger
 
@@ -54,26 +54,26 @@ After you're signed in, you can verify your wallet address with the address on t
 button.   
 ![wallet-verify](../images/ledger-tuto-wallet-verify.png)
 
-## PersistenceCore CLI + Ledger Nano
+## ElysiumCore CLI + Ledger Nano
 
-**Note: You need to [install the Persistence app](#install-the-persistence-ledger-application) on your Ledger Nano
+**Note: You need to [install the Elysium app](#install-the-elysium-ledger-application) on your Ledger Nano
 before performing this task**.
 
-The tool used to generate addresses and transactions on the Persistence is **persistenceCore**. Here is how to get
+The tool used to generate addresses and transactions on the Elysium is **elysiumCore**. Here is how to get
 started.
 
 ### Before you begin
 
 - [Install Golang](https://golang.org/doc/install)
-- [Install PersistenceCore](https://github.com/persistenceOne/persistenceCore#installation-steps)
+- [Install ElysiumCore](https://github.com/gridironOne/elysiumCore#installation-steps)
 
-Verify that **persistenceCore** is installed correctly with the following command:
+Verify that **elysiumCore** is installed correctly with the following command:
 
 ```bash
-persistenceCore version --long
+elysiumCore version --long
 
-➜ name: persistenceCore
-server_name: persistenceCore
+➜ name: elysiumCore
+server_name: elysiumCore
 version: 0.1.3-2-gebc7dc7
 commit: ebc7dc7
 build_tags: netgo,ledger
@@ -83,26 +83,26 @@ go version go1.14.5 darwin/amd64
 ### Add your Ledger key
 
 1. Connect and unlock your **Ledger** device.
-2. Open the Persistence app on your Ledger device.
-3. Create an account in persistenceCore from your ledger key.
+2. Open the Elysium app on your Ledger device.
+3. Create an account in elysiumCore from your ledger key.
 
 ::: **Tip**
 Change the _keyName_ parameter to a meaningful name so that you can identify it with ease. The **Ledger** flag
-indicates **persistenceCore** to use your Ledger to seed the account.
+indicates **elysiumCore** to use your Ledger to seed the account.
 :::
 
 ```bash
-persistenceCore keys add <keyName> --ledger
+elysiumCore keys add <keyName> --ledger
 
 ➜ NAME: TYPE: ADDRESS:     PUBKEY:
-<keyName> ledger persistence1... persistencepub1...
+<keyName> ledger elysium1... elysiumpub1...
 ```
 
-Persistence uses HD wallets. This means you can setup multiple accounts using the same Ledger seed. To create another
+Elysium uses HD wallets. This means you can setup multiple accounts using the same Ledger seed. To create another
 account from your Ledger device, run (change the integer i to some value >= 0 to choose the account for HD derivation):
 
 ```bash
-persistenceCore keys add <secondKeyName> --ledger --account <i>
+elysiumCore keys add <secondKeyName> --ledger --account <i>
 ```
 
 ### Confirm your address
@@ -111,48 +111,48 @@ Run this command to display your address on the device. Use the **keyName** that
 flag is supported in version 1.2.0 and higher.
 
 ```bash
-persistenceCore keys show <keyName> -d
+elysiumCore keys show <keyName> -d
 ```
 
 Confirm that the address displayed on the device matches the one that's displayed when you added the key.
 
 ### Connect to a full node
 
-Next, you need to configure **persistenceCore** with the URL of a Persistence full node and the appropriate **chain_id**
-. In this example, we connect to the public load balanced full node operated by Persistence on the **core-1** chain. You
-can point your **persistenceCore** to any Persistence full node. Be sure that the **chain-id** is set to the same chain
+Next, you need to configure **elysiumCore** with the URL of a Elysium full node and the appropriate **chain_id**
+. In this example, we connect to the public load balanced full node operated by Elysium on the **core-1** chain. You
+can point your **elysiumCore** to any Elysium full node. Be sure that the **chain-id** is set to the same chain
 as the full node.
 
 Test your connection with a query such as:
 
 ``` bash
-persistenceCore query staking validators --node https://rpc.core.persistence.one:443 --chain-id core-1
+elysiumCore query staking validators --node https://rpc.core.elysium.one:443 --chain-id core-1
 ```
 
 ::: **Tip**
 To run your own full node
-locally [read more here.](https://github.com/persistenceOne/persistenceCore#initialize-a-new-chain-and-start-node).
+locally [read more here.](https://github.com/gridironOne/elysiumCore#initialize-a-new-chain-and-start-node).
 :::
 
 ### Send a transaction
 
-You are now ready to start signing in and sending transactions. Send a transaction with persistenceCore using the the **
+You are now ready to start signing in and sending transactions. Send a transaction with elysiumCore using the the **
 tx send** command.
 
 ``` bash
-persistenceCore tx bank send --help # to see all available options.
+elysiumCore tx bank send --help # to see all available options.
 ```
 
 ::: **Tip**
-Ensure that you unlock your device with the **PIN** and then open the **Persistence** app before trying to run these
+Ensure that you unlock your device with the **PIN** and then open the **Elysium** app before trying to run these
 commands
 :::
 
-Use the **keyName** you set for your Ledger key and persistenceCore will connect with the Persistence Ledger app to then
+Use the **keyName** you set for your Ledger key and elysiumCore will connect with the Elysium Ledger app to then
 to sign your transaction.
 
 ```bash
-persistenceCore tx bank send <keyName> <destinationAddress> <amount><denomination> --node https://rpc.core.persistence.one:443 --chain-id core-1
+elysiumCore tx bank send <keyName> <destinationAddress> <amount><denomination> --node https://rpc.core.elysium.one:443 --chain-id core-1
 ```
 
 When you are shown the message, **Confirm transaction before signing**, select Answer **Y**.
@@ -165,42 +165,42 @@ Now, you are all set to start sending transactions on the network.
 
 ### Receive funds
 
-To receive funds to the Persistence Wallet account on your Ledger device, retrieve the address to your Ledger account (
+To receive funds to the Elysium Wallet account on your Ledger device, retrieve the address to your Ledger account (
 the ones with `TYPE ledger`) with this command:
 
 ```bash
-persistenceCore keys list
+elysiumCore keys list
 
 ➜ NAME:   TYPE:  ADDRESS:        PUBKEY:
-<keyName> ledger persistence1... persistencepub1...
+<keyName> ledger elysium1... elysiumpub1...
 ```
 
 ### Further documentation
 
-If you aren't sure what **persistenceCore** can do, just run the command without arguments to output documentation for
+If you aren't sure what **elysiumCore** can do, just run the command without arguments to output documentation for
 the commands it supports.
 
 ::: **Tip**
-The **persistenceCore** help commands are nested. So `$ persistenceCore` will output docs for the top level commands (
+The **elysiumCore** help commands are nested. So `$ elysiumCore` will output docs for the top level commands (
 status, config, query, and tx). You can access documentation for sub commands with further help commands.
 
 For example, to print the **query** commands:
 
 ```bash
-persistenceCore query --help
+elysiumCore query --help
 ```
 
 Or to print the **tx** (transaction) commands:
 
 ```bash
-persistenceCore tx --help
+elysiumCore tx --help
 ```
 
 :::
 
 ## The Cosmos standard transaction
 
-Transactions in Persistence embed
+Transactions in Elysium embed
 the [Standard Transaction type](https://godoc.org/github.com/cosmos/cosmos-sdk/x/auth#StdTx) from the Cosmos SDK. The
 Ledger device displays a serialized JSON representation of this object for you to review before signing the transaction.
 Here are the fields and what they mean:
@@ -216,4 +216,4 @@ Here are the fields and what they mean:
 
 ## Support
 
-For any questions or support, do reach us out on our [Telegram channel](https://t.me/PersistenceOneChat).
+For any questions or support, do reach us out on our [Telegram channel](https://t.me/ElysiumOneChat).

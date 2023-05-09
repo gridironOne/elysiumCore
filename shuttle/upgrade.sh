@@ -3,9 +3,9 @@
 OFFSET_HEIGHT="${OFFSET_HEIGHT:=80}"
 UPGRADE_NAME="${UPGRADE_NAME}"
 
-CHAIN_BIN="${CHAIN_BIN:=persistenceCore}"
-DENOM="${DENOM:=uxprt}"
-CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.persistenceCore}"
+CHAIN_BIN="${CHAIN_BIN:=elysiumCore}"
+DENOM="${DENOM:=ufury}"
+CHAIN_DATA_DIR="${CHAIN_DATA_DIR:=.elysiumCore}"
 CHAIN_ID="${CHAIN_ID:=test-core-1}"
 
 set -o errexit -o nounset -o pipefail -eu
@@ -24,8 +24,8 @@ RESP=$($CHAIN_BIN tx gov submit-proposal software-upgrade $UPGRADE_NAME --yes \
     --chain-id $CHAIN_ID \
     --from val1 \
     --keyring-backend test \
-    --deposit 100uxprt \
-    --fees 20000uxprt \
+    --deposit 100ufury \
+    --fees 20000ufury \
     --gas auto --gas-adjustment 1.5 -b block -o json)
 echo "$RESP" | jq -r '{height, txhash, code, raw_log}'
 PROPOSAL_ID=$(echo "$RESP" | jq -r '.logs[0].events[] | select(.type == "submit_proposal") | .attributes[] | select(.key == "proposal_id") | .value')
@@ -36,9 +36,9 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json > /dev/null
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 5000uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 5000ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val2 --yes --chain-id $CHAIN_ID \
-    --fees 5000uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 5000ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "### Upgrade happening on $UPGRADE_HEIGHT"
 

@@ -13,8 +13,8 @@ echo "Starting software upgrade"
 
 echo "### Submit proposal from val1"
 RESP=$($CHAIN_BIN tx gov submit-proposal software-upgrade $UPGRADE_NAME --yes --title "$UPGRADE_NAME" --description "$UPGRADE_NAME" \
-    --upgrade-height $UPGRADE_HEIGHT --from val1 --chain-id $CHAIN_ID --deposit 100uxprt \
-    --fees 2000uxprt --gas auto --gas-adjustment 1.5 -b block -o json)
+    --upgrade-height $UPGRADE_HEIGHT --from val1 --chain-id $CHAIN_ID --deposit 100ufury \
+    --fees 2000ufury --gas auto --gas-adjustment 1.5 -b block -o json)
 PROPOSAL_ID=$(echo "$RESP" | jq -r '.logs[0].events[] | select(.type == "submit_proposal") | .attributes[] | select(.key == "proposal_id") | .value')
 
 echo "### Query proposal prevote"
@@ -22,11 +22,11 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 200uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 200ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test1 --yes --chain-id $CHAIN_ID \
-    --fees 200uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 200ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test2 --yes --chain-id $CHAIN_ID \
-    --fees 200uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 200ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "###Proposal voting period"
 sleep 40

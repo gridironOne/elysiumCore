@@ -1,5 +1,5 @@
 /*
- Copyright [2019] - [2021], PERSISTENCE TECHNOLOGIES PTE. LTD. and the persistenceCore contributors
+ Copyright [2019] - [2021], ELYSIUM TECHNOLOGIES PTE. LTD. and the elysiumCore contributors
  SPDX-License-Identifier: Apache-2.0
 */
 
@@ -8,7 +8,7 @@ package app
 import (
 	"encoding/json"
 
-	"github.com/persistenceOne/persistenceCore/v8/app/params"
+	"github.com/gridironOne/elysiumCore/v8/app/params"
 )
 
 // GenesisState of the blockchain is represented here as a map of raw json

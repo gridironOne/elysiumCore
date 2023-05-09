@@ -2,9 +2,9 @@
 
 ## Reporting Security Issues
 
-The Persistence team and community take all security vulnerabilities in Persistence seriously.
+The Elysium team and community take all security vulnerabilities in Elysium seriously.
 
-Thank you for improving the security of Persistence. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
+Thank you for improving the security of Elysium. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 
 ### Standard Priority Bug
 
@@ -15,9 +15,9 @@ If it is not taken up in a couple of days, feel free to tag `@Anmol1696`, `@pune
 ### Critical bug or security issue
 
 Please report critical security vulnerabilities to
-**[admin@persistence.one](mailto:admin@persistence.one)**.  *Please avoid opening a public issue on the repository for critical security issues.*
+**[admin@elysium.one](mailto:admin@elysium.one)**.  *Please avoid opening a public issue on the repository for critical security issues.*
 
-The Persistence team will send a response indicating the next steps in handling your
+The Elysium team will send a response indicating the next steps in handling your
 report. After the initial reply to your report, the team will keep you informed
 of the progress towards remediation and may ask for additional
 information or guidance.
@@ -29,7 +29,7 @@ In addition, please include the following information along with your report:
 - An explanation of who can exploit this vulnerability, and what they gain when doing so -- write an attack scenario. This will help us evaluate your report quickly especially if the issue is complex.
 - Whether this vulnerability is public or known to third parties. If it is, please provide details.
 
-If you believe that an existing (public) issue is a critical-security-related issue, please email **[admin@persistence.one](mailto:admin@persistence.one)**. The email should include the issue ID and
+If you believe that an existing (public) issue is a critical-security-related issue, please email **[admin@elysium.one](mailto:admin@elysium.one)**. The email should include the issue ID and
 a short description of why it should be handled according to this critical security
 policy.
 
@@ -39,11 +39,11 @@ Alternately you can also notify us of a security issue through, [Discord](https:
 
 |         | Telegram       | Discord                         |
 | ------  | -------------  | ------------------------------  |
-| Puneet  | `@mkoijn6`     | `Puneet | Persistence 💪#0507`  |
-| Anmol   | `@anmol1696`   | `anmol1696 | Persistence#0348`  |
+| Puneet  | `@mkoijn6`     | `Puneet | Elysium 💪#0507`  |
+| Anmol   | `@anmol1696`   | `anmol1696 | Elysium#0348`  |
 | Sanjeev | `@ping_echo`   | `Echo | AUDIT.one#7553`         |
-| Ajaz    | `@ajansari95`  | `Ajaz Ahmed | Persistence#0296` |
-| Arham   | `@arhamchordia`| `Arham | Persistence#4526`      |
+| Ajaz    | `@ajansari95`  | `Ajaz Ahmed | Elysium#0296` |
+| Arham   | `@arhamchordia`| `Arham | Elysium#4526`      |
 | Gokul   | `@bahdotsh`    | `bahdotsh#9564`                 |
 
 ### Coordinated Vulnerability Disclosure Policy
@@ -52,7 +52,7 @@ We ask security researchers to keep vulnerabilities and communications around vu
 
 - Allow us a reasonable amount of time to correct or address security vulnerabilities.
 - Avoid exploiting any vulnerabilities that you discover.
-- Demonstrate good faith by not disrupting or degrading Persistence's services.
+- Demonstrate good faith by not disrupting or degrading Elysium's services.
 
 ### Disclosure Policy
 
@@ -62,4 +62,4 @@ When the security team receives a security bug report, they will assign it to a 
 - Audit code to find any potential similar problems.
 - Prepare fixes for all releases still under maintenance.
 
-This process can take some time. Every effort will be made to handle the bug in as timely a manner as possible. However, it's important that we follow the process described above to ensure that disclosures are handled consistently and to keep Persistence and the projects running on it secure.
+This process can take some time. Every effort will be made to handle the bug in as timely a manner as possible. However, it's important that we follow the process described above to ensure that disclosures are handled consistently and to keep Elysium and the projects running on it secure.

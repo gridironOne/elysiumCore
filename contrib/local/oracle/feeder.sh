@@ -8,7 +8,7 @@ mkdir -p $DIR
 cd $DIR
 
 ## Clone the oracle-feeder repo.
-git clone git@github.com:persistenceOne/oracle-feeder.git
+git clone git@github.com:gridironOne/oracle-feeder.git
 
 # Move into the oracle feeder directory
 cd $DIR/oracle-feeder
@@ -22,7 +22,7 @@ touch $DIR/oracle-feeder/config.toml
 # setup price-feeder configuration
 tee $DIR/oracle-feeder/config.toml <<EOF
 gas_adjustment = 1.5
-fees = "100uxprt"
+fees = "100ufury"
 
 [server]
 listen_addr = "0.0.0.0:7171"
@@ -42,13 +42,13 @@ providers = [
 quote = "USD"
 
 [account]
-address = "persistence1fk57xyyxz89krc3nn5law2xekan84gufzagszw"
+address = "elysium1fk57xyyxz89krc3nn5law2xekan84gufzagszw"
 chain_id = "testing"
-validator = "persistencevaloper1fk57xyyxz89krc3nn5law2xekan84guftegdth"
+validator = "elysiumvaloper1fk57xyyxz89krc3nn5law2xekan84guftegdth"
 
 [keyring]
 backend = "test"
-dir = "/tmp/trash/.persistenceCore"
+dir = "/tmp/trash/.elysiumCore"
 
 [rpc]
 grpc_endpoint = "localhost:9090"

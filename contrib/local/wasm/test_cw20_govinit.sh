@@ -16,11 +16,11 @@ wget "https://github.com/CosmWasm/cw-plus/releases/download/v0.13.4/cw20_base.wa
 RESP=$($CHAIN_BIN tx gov submit-proposal wasm-store "$DIR/cw20_base.wasm" \
   --title "Add cw20_base" \
   --description "cw20_base contact" \
-  --deposit 10000uxprt \
+  --deposit 10000ufury \
   --run-as $VAL1_KEY \
   --instantiate-nobody "true" \
   --keyring-backend test \
-  --from $VAL1_KEY --gas auto --fees 10000uxprt -y \
+  --from $VAL1_KEY --gas auto --fees 10000ufury -y \
   --chain-id $CHAIN_ID \
   -b block -o json --gas-adjustment 1.5)
 echo "$RESP" | jq
@@ -31,11 +31,11 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test2 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "### Query proposal postvote"
 $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
@@ -64,12 +64,12 @@ echo "### Initiate contract via gov proposal"
 RESP=$($CHAIN_BIN tx gov submit-proposal instantiate-contract $CODE_ID "$INIT" \
   --admin="$TEST1_KEY" \
   --from $TEST1_KEY \
-  --deposit 10000uxprt \
+  --deposit 10000ufury \
   --label "First Coin" \
   --title "FirstCoin" \
   --description "First cw20 token created via contract" \
   --gas-adjustment 1.5 \
-  --fees "10000uxprt" \
+  --fees "10000ufury" \
   --gas "auto" \
   --run-as $VAL1_KEY \
   -y --chain-id $CHAIN_ID -b block -o json)
@@ -82,11 +82,11 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test2 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "### Query proposal postvote"
 $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
@@ -117,7 +117,7 @@ EOF
 
 echo $TRANSFER | jq
 $CHAIN_BIN tx wasm execute $CONTRACT "$TRANSFER" \
-  --from $TEST1_KEY --gas-adjustment 1.5 --fees "10000uxprt" \
+  --from $TEST1_KEY --gas-adjustment 1.5 --fees "10000ufury" \
   --gas "auto" -y --chain-id $CHAIN_ID -b block -o json | jq
 
 echo "### Query balance after transfer: expected balance: "

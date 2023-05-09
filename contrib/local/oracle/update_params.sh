@@ -18,7 +18,7 @@ sleep 5
 ## Submit tx to change oracle params via gov proposal using proposal.sh
 RESP=$($CHAIN_BIN tx gov submit-proposal param-change  "$DIR/proposal.json" \
   --keyring-backend test \
-  --from $VAL1_KEY --gas auto --fees 10000uxprt -y \
+  --from $VAL1_KEY --gas auto --fees 10000ufury -y \
   --chain-id $CHAIN_ID \
   -b block -o json --gas-adjustment 1.5)
 
@@ -30,11 +30,11 @@ $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
 
 echo "### Vote proposal"
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from val1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test1 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 $CHAIN_BIN tx gov vote $PROPOSAL_ID yes --from test2 --yes --chain-id $CHAIN_ID \
-    --fees 500uxprt --gas auto --gas-adjustment 1.5 -b block -o json | jq
+    --fees 500ufury --gas auto --gas-adjustment 1.5 -b block -o json | jq
 
 echo "### Query proposal postvote"
 $CHAIN_BIN q gov proposal $PROPOSAL_ID -o json | jq
