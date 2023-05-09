@@ -11,7 +11,7 @@ import (
 
 const (
 	Name             = "ElysiumCore"
-	Bech32MainPrefix = "elysium"
+	Bech32MainPrefix = "did:fury:e"
 	CoinType         = 118
 	Purpose          = 44
 

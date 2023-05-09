@@ -95,7 +95,7 @@ indicates **elysiumCore** to use your Ledger to seed the account.
 elysiumCore keys add <keyName> --ledger
 
 ➜ NAME: TYPE: ADDRESS:     PUBKEY:
-<keyName> ledger elysium1... elysiumpub1...
+<keyName> ledger did:fury:e1... elysiumpub1...
 ```
 
 Elysium uses HD wallets. This means you can setup multiple accounts using the same Ledger seed. To create another
@@ -172,7 +172,7 @@ the ones with `TYPE ledger`) with this command:
 elysiumCore keys list
 
 ➜ NAME:   TYPE:  ADDRESS:        PUBKEY:
-<keyName> ledger elysium1... elysiumpub1...
+<keyName> ledger did:fury:e1... elysiumpub1...
 ```
 
 ### Further documentation
